@@ -2,6 +2,7 @@ package com.dotplays.storedemoo;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -128,4 +129,29 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+    public void saveToSDCard(View view) {
+
+    Boolean isSDPresent = android.os.Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED);
+    Boolean isSDSupportedDevice = Environment.isExternalStorageRemovable();
+
+        if (isSDSupportedDevice && isSDPresent) {
+            // yes SD-card is present
+        } else {
+            // Sorry
+        }
+    }
+
+    public void loadFromSDCard(View view) {
+
+        Boolean isSDPresent = android.os.Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED);
+        Boolean isSDSupportedDevice = Environment.isExternalStorageRemovable();
+
+        if (isSDSupportedDevice && isSDPresent) {
+            // yes SD-card is present
+        } else {
+            // Sorry
+        }
+    }
+
 }
