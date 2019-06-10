@@ -8,8 +8,10 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Scanner;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -64,6 +66,27 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void loadFromCache(View view) {
+
+        try {
+            // lay ra dia chi cua thu muc Cache.
+            File pathCacheDir = getCacheDir();
+
+            // tao ra file cache tu ten file va dia chi thu muc chua file cache
+            File cacheFile = new File(pathCacheDir, cacheFileName);
+
+            Scanner scanner = new Scanner(cacheFile);
+
+            String duLieu = "";
+            while (scanner.hasNext()) {
+                duLieu = duLieu + scanner.nextLine();
+            }
+            scanner.close();
+
+            edtData.setText(duLieu);
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
 
 
     }
