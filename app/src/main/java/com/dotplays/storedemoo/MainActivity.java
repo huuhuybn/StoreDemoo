@@ -1,5 +1,7 @@
 package com.dotplays.storedemoo;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -87,6 +89,42 @@ public class MainActivity extends AppCompatActivity {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+
+
+    }
+
+    public void saveToSharedPreference(View view) {
+        // lay ra du lieu tu edittext , trim() la cat khoang trang 2 dau cua string
+        String data = edtData.getText().toString().trim();
+
+        SharedPreferences sharedPreferences =
+                getSharedPreferences("myFile", Context.MODE_PRIVATE);
+
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        editor.putString("data", data);
+
+        // confirm la save
+
+        editor.apply();
+        // 2 cau lenh apply va commit la giong nhau.
+        //editor.commit();
+
+
+        // clear du lieu vua nhap
+        edtData.setText("");
+
+
+    }
+
+    public void loadFromSharedPreference(View view) {
+
+
+        SharedPreferences sharedPreferences =
+                getSharedPreferences("myFile", Context.MODE_PRIVATE);
+        String data = sharedPreferences.getString("data", null);
+
+        if (data != null) edtData.setText(data);
 
 
     }

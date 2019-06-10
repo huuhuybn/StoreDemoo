@@ -29,4 +29,20 @@
         android:layout_height="wrap_content"
         android:text="Load from Cache" />
 
+
+    <Button
+        android:onClick="saveToSharedPreference"
+        android:layout_marginTop="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Save to SharedPreference" />
+
+
+    <Button
+        android:onClick="loadFromSharedPreference"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Load from SharedPreference" />
+
+
 </LinearLayout>
