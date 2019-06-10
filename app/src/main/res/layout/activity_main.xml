@@ -16,6 +16,7 @@
 
 
     <Button
+        android:onClick="saveToCache"
         android:layout_marginTop="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -23,6 +24,7 @@
 
 
     <Button
+        android:onClick="loadFromCache"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Load from Cache" />
