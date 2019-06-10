@@ -4,8 +4,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TimePicker;
+import android.widget.Toast;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,17 +28,37 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void saveToCache(View view) {
-        // lay ra du lieu tu edittext , trim() la cat khoang trang 2 dau cua string
-        String data = edtData.getText().toString().trim();
 
-        // lay ra dia chi cua thu muc Cache.
-        File pathCacheDir = getCacheDir();
+        try {
+            // lay ra du lieu tu edittext , trim() la cat khoang trang 2 dau cua string
+            String data = edtData.getText().toString().trim();
 
-        // tao ra file cache tu ten file va dia chi thu muc chua file cache
-        File cacheFile = new File(pathCacheDir, cacheFileName);
+            // lay ra dia chi cua thu muc Cache.
+            File pathCacheDir = getCacheDir();
 
-        // ghi file cache nay vao thu muc cache
-        cacheFile.createNewFile();
+            // tao ra file cache tu ten file va dia chi thu muc chua file cache
+            File cacheFile = new File(pathCacheDir, cacheFileName);
+
+            // ghi file cache nay vao thu muc cache
+            cacheFile.createNewFile();
+
+            FileOutputStream fileOutputStream = new FileOutputStream(cacheFile);
+
+            fileOutputStream.write(data.getBytes());
+
+            fileOutputStream.close();
+
+            Toast.makeText(this, "Ghi Thanh Cong!", Toast.LENGTH_SHORT).show();
+
+            // clear text tai o nhap lieu
+            edtData.setText("");
+
+
+        } catch (IOException e) {
+
+            e.printStackTrace();
+
+        }
 
 
     }
